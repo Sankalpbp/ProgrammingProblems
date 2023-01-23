@@ -1,0 +1,37 @@
+package warmUpProblems.arrays;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class DynamicListTest {
+
+    private DynamicList list;
+
+    @BeforeEach
+    public void testSetup ( ) {
+        list = new DynamicList ();
+    }
+
+    @Test
+    public void toStringNullTest ( ) {
+        String arrayAsString = "[  ]";
+        Assertions.assertEquals( list.toString(), arrayAsString );
+    }
+
+    @Test
+    public void toStringSingleElementTest ( ) {
+        list.add( 1 );
+        String arrayAsString = "[ 1 ]";
+        Assertions.assertEquals( list.toString (), arrayAsString );
+    }
+
+    @Test
+    public void toStringTest () {
+        list.add ( 1 );
+        list.add ( 2 );
+        String arrayAsString = "[ 1, 2 ]";
+        Assertions.assertEquals ( list.toString(), arrayAsString );
+    }
+
+}
