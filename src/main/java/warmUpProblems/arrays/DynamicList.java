@@ -42,9 +42,10 @@ public class DynamicList {
     }
 
     void resize ( ) {
-        int [] newArray = new int [ this.maximumSize * 2 ];
+        this.maximumSize *= 2;
+        int [] newArray = new int [ this.maximumSize ];
 
-        for ( int i = 0; i < this.maximumSize; ++i ) {
+        for ( int i = 0; i < this.length; ++i ) {
             newArray [i] = this.array [i];
         }
 
