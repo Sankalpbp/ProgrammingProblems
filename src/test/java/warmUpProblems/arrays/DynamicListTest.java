@@ -34,4 +34,15 @@ public class DynamicListTest {
         Assertions.assertEquals ( list.toString(), arrayAsString );
     }
 
+    @Test
+    public void testArgsConstructor ( ) {
+        list = new DynamicList ( 3 );
+        list.add ( 1 );
+        list.add ( 2 );
+        list.add ( 3 );
+
+        String arrayAsString = "[ 1, 2, 3 ]";
+        Assertions.assertEquals ( list.toString (), arrayAsString );
+    }
+
 }
