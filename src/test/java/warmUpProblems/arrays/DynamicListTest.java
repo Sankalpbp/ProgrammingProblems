@@ -45,4 +45,23 @@ public class DynamicListTest {
         Assertions.assertEquals ( list.toString (), arrayAsString );
     }
 
+    @Test
+    public void testGetLength () {
+        list.add ( 1 );
+        list.add ( 2 );
+        list.add ( 4 );
+        Assertions.assertEquals ( list.getLength (), 3 );
+    }
+
+    @Test
+    public void testGetMaximumSize () {
+        list.add ( 1 );
+        list.add ( 2 );
+        list.add ( 3 );
+
+        Assertions.assertEquals ( list.getMaximumSize (), 4 );
+    }
+
+
+
 }
