@@ -45,8 +45,8 @@ public class DynamicList {
         this.maximumSize *= 2;
         int [] newArray = new int [ this.maximumSize ];
 
-        for ( int i = 0; i < this.length; ++i ) {
-            newArray [i] = this.array [i];
+        if ( this.length >= 0 ) {
+            System.arraycopy ( this.array, 0, newArray, 0, this.length );
         }
 
         this.array = newArray;
@@ -66,8 +66,8 @@ public class DynamicList {
             this.resize ();
         }
 
-        for ( int k = i + 1; k < this.length; ++k ) {
-            this.array [ k ] = this.array [ k - 1 ];
+        if ( this.length - ( i + 1 ) >= 0 ) {
+            System.arraycopy ( this.array, i + 1 - 1, this.array, i + 1, this.length - ( i + 1 ) );
         }
     }
 
@@ -76,8 +76,8 @@ public class DynamicList {
             throw new ArrayIndexOutOfBoundsException ( "i: " + i + " is beyond the maximum size of the array." );
         }
 
-        for ( int k = i + 1; k < this.length; ++k ) {
-            this.array [ k - 1 ] = this.array [ k ];
+        if ( this.length - ( i + 1 ) >= 0 ) {
+            System.arraycopy ( this.array, i + 1, this.array, i + 1 - 1, this.length - ( i + 1 ) );
         }
     }
 
