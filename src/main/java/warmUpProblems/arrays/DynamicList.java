@@ -41,6 +41,17 @@ public class DynamicList {
         this.array [i] = value;
     }
 
+    void resize ( int i ) {
+        this.maximumSize = i * 2;
+        int [] newArray = new int [ this.maximumSize ];
+
+        if ( this.length >= 0 ) {
+            System.arraycopy ( this.array, 0, newArray, 0, this.length );
+        }
+
+        this.array = newArray;
+    }
+
     void resize ( ) {
         this.maximumSize *= 2;
         int [] newArray = new int [ this.maximumSize ];
@@ -61,13 +72,23 @@ public class DynamicList {
         ++this.length;
     }
 
-    void add ( int i, int value ) {
-        if ( this.length > this.maximumSize ) {
-            this.resize ();
+    void add ( int i, int value ) throws ArrayIndexOutOfBoundsException {
+        if ( i < 0 ) {
+            throw new ArrayIndexOutOfBoundsException ( "Invalid Index: " + i );
+        }
+        if ( i >= this.maximumSize ) {
+            this.resize ( i );
         }
 
         if ( this.length - ( i + 1 ) >= 0 ) {
             System.arraycopy ( this.array, i + 1 - 1, this.array, i + 1, this.length - ( i + 1 ) );
+        }
+
+        this.array [ i ] = value;
+        if ( i > this.length ) {
+            this.length = i + 1;
+        } else {
+            ++this.length;
         }
     }
 
@@ -79,6 +100,8 @@ public class DynamicList {
         if ( this.length - ( i + 1 ) >= 0 ) {
             System.arraycopy ( this.array, i + 1, this.array, i + 1 - 1, this.length - ( i + 1 ) );
         }
+
+        --this.length;
     }
 
     void remove ( ) {
@@ -99,7 +122,7 @@ public class DynamicList {
 
     public int last ( ) {
         if ( this.length <= 0 ) {
-            throw new ArrayIndexOutOfBoundsException ( "There are no elements in the array" );
+            throw new ArrayIndexOutOfBoundsException ( "There are no elements in the array." );
         }
 
         return this.array [ this.length - 1 ];
