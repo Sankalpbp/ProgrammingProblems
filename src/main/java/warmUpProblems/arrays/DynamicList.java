@@ -18,22 +18,22 @@ public class DynamicList {
         this.length = 0;
     }
 
-    int getLength ( ) {
+    public int getLength ( ) {
         return this.length;
     }
 
-    int at ( int i ) throws ArrayIndexOutOfBoundsException {
+    public int at ( int i ) throws ArrayIndexOutOfBoundsException {
         if ( i < 0 || i >= this.maximumSize ) {
             throw new ArrayIndexOutOfBoundsException ( "i: " + i + " is beyond the maximum size of the array." );
         }
         return this.array[i];
     }
 
-    int getMaximumSize ( ) {
+    public int getMaximumSize ( ) {
         return this.maximumSize;
     }
 
-    void set ( int i, int value ) throws ArrayIndexOutOfBoundsException {
+    public void set ( int i, int value ) throws ArrayIndexOutOfBoundsException {
         if ( i < 0 || i >= this.maximumSize ) {
             throw new ArrayIndexOutOfBoundsException ( "i: " + i + " is beyond the maximum size of the array." );
         }
@@ -41,7 +41,7 @@ public class DynamicList {
         this.array [i] = value;
     }
 
-    void resize ( int i ) {
+    private void resize ( int i ) {
         this.maximumSize = i * 2;
         int [] newArray = new int [ this.maximumSize ];
 
@@ -52,7 +52,7 @@ public class DynamicList {
         this.array = newArray;
     }
 
-    void resize ( ) {
+    private void resize ( ) {
         this.maximumSize *= 2;
         int [] newArray = new int [ this.maximumSize ];
 
@@ -63,7 +63,7 @@ public class DynamicList {
         this.array = newArray;
     }
 
-    void add ( int value ) {
+    public void add ( int value ) {
         if ( this.length >= this.maximumSize ) {
             this.resize ( );
         }
@@ -72,7 +72,7 @@ public class DynamicList {
         ++this.length;
     }
 
-    void add ( int i, int value ) throws ArrayIndexOutOfBoundsException {
+    public void add ( int i, int value ) throws ArrayIndexOutOfBoundsException {
         if ( i < 0 ) {
             throw new ArrayIndexOutOfBoundsException ( "Invalid Index: " + i );
         }
@@ -85,14 +85,11 @@ public class DynamicList {
         }
 
         this.array [ i ] = value;
-        if ( i > this.length ) {
-            this.length = i + 1;
-        } else {
-            ++this.length;
-        }
+
+        this.length = ( i > this.length ) ? ( i + 1 ) : ( this.length + 1 );
     }
 
-    void remove ( int i ) {
+    public void remove ( int i ) {
         if ( i < 0 || i >= this.maximumSize ) {
             throw new ArrayIndexOutOfBoundsException ( "i: " + i + " is beyond the maximum size of the array." );
         }
@@ -104,7 +101,7 @@ public class DynamicList {
         --this.length;
     }
 
-    void remove ( ) {
+    public void remove ( ) {
         if ( this.length <= 0 ) {
             throw new ArrayIndexOutOfBoundsException ( "There are no elements in the array to remove." );
         }
