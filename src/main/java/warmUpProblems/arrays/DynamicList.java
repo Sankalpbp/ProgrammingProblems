@@ -1,6 +1,8 @@
 package warmUpProblems.arrays;
 
-public class DynamicList {
+import warmUpProblems.List;
+
+public class DynamicList implements List {
 
     private int [] array;
     private int length;
@@ -18,10 +20,12 @@ public class DynamicList {
         this.length = 0;
     }
 
+    @Override
     public int getLength ( ) {
         return this.length;
     }
 
+    @Override
     public int at ( int i ) throws ArrayIndexOutOfBoundsException {
         if ( i < 0 || i >= this.maximumSize ) {
             throw new ArrayIndexOutOfBoundsException ( "i: " + i + " is beyond the maximum size of the array." );
@@ -29,10 +33,12 @@ public class DynamicList {
         return this.array[i];
     }
 
+    @Override
     public int getMaximumSize ( ) {
         return this.maximumSize;
     }
 
+    @Override
     public void set ( int i, int value ) throws ArrayIndexOutOfBoundsException {
         if ( i < 0 || i >= this.maximumSize ) {
             throw new ArrayIndexOutOfBoundsException ( "i: " + i + " is beyond the maximum size of the array." );
@@ -63,6 +69,7 @@ public class DynamicList {
         this.array = newArray;
     }
 
+    @Override
     public void add ( int value ) {
         if ( this.length >= this.maximumSize ) {
             this.resize ( );
@@ -72,6 +79,7 @@ public class DynamicList {
         ++this.length;
     }
 
+    @Override
     public void add ( int i, int value ) throws ArrayIndexOutOfBoundsException {
         if ( i < 0 ) {
             throw new ArrayIndexOutOfBoundsException ( "Invalid Index: " + i );
@@ -89,7 +97,8 @@ public class DynamicList {
         this.length = ( i > this.length ) ? ( i + 1 ) : ( this.length + 1 );
     }
 
-    public void remove ( int i ) {
+    @Override
+    public void remove ( int i ) throws ArrayIndexOutOfBoundsException {
         if ( i < 0 || i >= this.maximumSize ) {
             throw new ArrayIndexOutOfBoundsException ( "i: " + i + " is beyond the maximum size of the array." );
         }
@@ -101,6 +110,7 @@ public class DynamicList {
         --this.length;
     }
 
+    @Override
     public void remove ( ) {
         if ( this.length <= 0 ) {
             throw new ArrayIndexOutOfBoundsException ( "There are no elements in the array to remove." );
@@ -109,6 +119,7 @@ public class DynamicList {
         --this.length;
     }
 
+    @Override
     public int first ( ) {
         if ( this.length <= 0 ) {
             throw new ArrayIndexOutOfBoundsException ( "There are no elements in the array." );
@@ -117,6 +128,7 @@ public class DynamicList {
         return this.array [ 0 ];
     }
 
+    @Override
     public int last ( ) {
         if ( this.length <= 0 ) {
             throw new ArrayIndexOutOfBoundsException ( "There are no elements in the array." );
