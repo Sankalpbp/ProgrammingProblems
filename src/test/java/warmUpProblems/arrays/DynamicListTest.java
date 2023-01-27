@@ -3,8 +3,9 @@ package warmUpProblems.arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import warmUpProblems.BasicTest;
 
-public class DynamicListTest {
+public class DynamicListTest implements BasicTest {
 
     private DynamicList list;
 
