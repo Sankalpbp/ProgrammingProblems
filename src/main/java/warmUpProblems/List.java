@@ -6,8 +6,6 @@ public interface List {
 
     int at(int i) throws ArrayIndexOutOfBoundsException;
 
-    int getMaximumSize();
-
     void set(int i, int value) throws ArrayIndexOutOfBoundsException;
 
     void add(int value);

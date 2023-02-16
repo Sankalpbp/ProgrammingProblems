@@ -33,7 +33,6 @@ public class DynamicList implements List {
         return this.array[i];
     }
 
-    @Override
     public int getMaximumSize ( ) {
         return this.maximumSize;
     }
