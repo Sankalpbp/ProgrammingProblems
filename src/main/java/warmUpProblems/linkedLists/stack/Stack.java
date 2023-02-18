@@ -41,7 +41,7 @@ public class Stack {
             builder.append ( ", " );
         }
 
-        if ( stack.size () != 0 ) {
+        if ( !stack.isEmpty() ) {
             builder.append(stack.get(stack.size() - 1));
         }
 
