@@ -1,6 +1,6 @@
 package warmUpProblems.sorting;
 
-public class SimpleSortingTechniques {
+public class SimpleSortingTechniques extends SortingTechniques {
 
     private int [] array;
     private int size;

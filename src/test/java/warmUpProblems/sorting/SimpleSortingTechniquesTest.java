@@ -3,9 +3,8 @@ package warmUpProblems.sorting;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import warmUpProblems.ArrayTestUtil;
 import warmUpProblems.BasicTest;
-
-import java.util.Arrays;
 
 public class SimpleSortingTechniquesTest implements BasicTest  {
 
@@ -17,90 +16,39 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
     private static final String SORTED_NEGATIVE_ELEMENTS_ARRAY = "[ -6, -5, -4, -3, -2, -1 ]";
     private static final String SORTED_MIXED_ELEMENTS_ARRAY = "[ -999, -1, 0, 1, 6, 134 ]";
 
+    private static final String SINGLE_ELEMENT = "array with single elements";
+    private static final String EQUAL_ELEMENT = "array with equal elements";
+    private static final String ALREADY_SORTED = "array with already sorted elements";
+    private static final String REVERSE_SORTED = "array with reverse sorted elements";
+    private static final String WITH_DUPLICATES = "array with some duplicates";
+    private static final String NORMAL_ARRAY = "array with normal elements jumbled together, but all positive";
+    private static final String NEGATIVE_ARRAY = "array with all negative elements";
+    private static final String MIXED_ARRAY = "array with both positive, negative elements and zero";
+
     @Override
     @BeforeEach
     public void testSetup () {
+        technique = new SimpleSortingTechniques ();
     }
 
-    private void setSingleElementArray () {
-        technique = new SimpleSortingTechniques ( );
-    }
+    public void setTechnique ( final String arrayType ) {
 
-    private void setEqualElementsArray () {
-        int [] array = new int [6];
-        Arrays.fill(array, 1);
-        technique = new SimpleSortingTechniques ( array );
-    }
-
-    private void setSortedElementsArray() {
-        int [] array = new int [ 6 ];
-        for ( int i = 0; i < array.length; ++i ) {
-            array[i] = i + 1;
+        switch ( arrayType ) {
+            case SINGLE_ELEMENT -> technique = ( SimpleSortingTechniques ) ArrayTestUtil.setSingleElementArray ( technique );
+            case EQUAL_ELEMENT -> technique = ( SimpleSortingTechniques ) ArrayTestUtil.setEqualElementsArray ( technique );
+            case ALREADY_SORTED -> technique = ( SimpleSortingTechniques ) ArrayTestUtil.setSortedElementsArray ( technique );
+            case REVERSE_SORTED -> technique = ( SimpleSortingTechniques ) ArrayTestUtil.setReversedSortedArray ( technique );
+            case MIXED_ARRAY -> technique = ( SimpleSortingTechniques ) ArrayTestUtil.setMixedNegativePositiveArray ( technique );
+            case NORMAL_ARRAY -> technique = ( SimpleSortingTechniques ) ArrayTestUtil.setNormalArray ( technique );
+            case WITH_DUPLICATES -> technique = ( SimpleSortingTechniques ) ArrayTestUtil.setArrayWithDuplicates ( technique );
+            case NEGATIVE_ARRAY -> technique = ( SimpleSortingTechniques ) ArrayTestUtil.setNegativeElementsArray ( technique );
         }
 
-        technique = new SimpleSortingTechniques ( array );
-    }
-
-    private void setReversedSortedArray () {
-        int [] array = new int [ 6 ];
-        for ( int i = 0; i < array.length; ++i ) {
-            array[ i ] = array.length - i;
-        }
-
-        technique = new SimpleSortingTechniques ( array );
-    }
-
-    public void setNormalArray () {
-        int [] array = new int [ 6 ];
-        array[ 0 ] = 6;
-        array[ 1 ] = 5;
-        array[ 2 ] = 3;
-        array[ 3 ] = 2;
-        array[ 4 ] = 1;
-        array[ 5 ] = 4;
-
-        technique = new SimpleSortingTechniques ( array );
-    }
-
-    public void setArrayWithDuplicates () {
-        int [] array = new int [ 6 ];
-        array[ 0 ] = 2;
-        array[ 1 ] = 1;
-        array[ 2 ] = 3;
-        array[ 3 ] = 3;
-        array[ 4 ] = 2;
-        array[ 5 ] = 1;
-
-        technique = new SimpleSortingTechniques ( array );
-    }
-
-    public void setNegativeElementsArray () {
-        int [] array = new int [ 6 ];
-        array [ 0 ] = -1;
-        array [ 1 ] = -3;
-        array [ 2 ] = -2;
-        array [ 3 ] = -6;
-        array [ 4 ] = -5;
-        array [ 5 ] = -4;
-
-        technique = new SimpleSortingTechniques ( array );
-    }
-
-    public void setMixedNegativePositiveArray () {
-        int [] array = new int [ 6 ];
-        array [ 0 ] = 1;
-        array [ 1 ] = -1;
-        array [ 2 ] = -999;
-        array [ 3 ] = 0;
-        array [ 4 ] = 134;
-        array [ 5 ] = 6;
-
-        technique = new SimpleSortingTechniques ( array );
     }
 
     @Test
     public void testBubbleSortWithSingleElementArray ( ) {
-        setSingleElementArray ();
+        setTechnique ( SINGLE_ELEMENT );
         technique.bubbleSort ();
 
         Assertions.assertEquals ( SORTED_SINGLE_ELEMENT_ARRAY, technique.toString () );
@@ -108,7 +56,7 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public void testBubbleSortWithEqualElementsArray () {
-        setEqualElementsArray();
+        setTechnique ( EQUAL_ELEMENT );
         technique.bubbleSort();
 
         Assertions.assertEquals ( SORTED_EQUAL_ELEMENTS_ARRAY, technique.toString () );
@@ -116,7 +64,7 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public void testBubbleSortWithAlreadySortedArray () {
-        setSortedElementsArray ();
+        setTechnique ( ALREADY_SORTED );
         technique.bubbleSort ();
 
         Assertions.assertEquals ( SORTED_NORMAL_ARRAY, technique.toString () );
@@ -124,7 +72,7 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public void testBubbleSortWithReverseSortedArray () {
-        setReversedSortedArray ();
+        setTechnique ( REVERSE_SORTED );
         technique.bubbleSort ();
 
         Assertions.assertEquals ( SORTED_NORMAL_ARRAY, technique.toString () );
@@ -132,7 +80,7 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public void testBubbleSortWithDuplicatesInsideArray () {
-        setArrayWithDuplicates();
+        setTechnique ( WITH_DUPLICATES );
         technique.bubbleSort();
 
         Assertions.assertEquals ( SORTED_ARRAY_WITH_DUPLICATES, technique.toString () );
@@ -140,7 +88,7 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public void testBubbleSort () {
-        setNormalArray ();
+        setTechnique ( NORMAL_ARRAY );
         technique.bubbleSort ();
 
         Assertions.assertEquals ( SORTED_NORMAL_ARRAY, technique.toString () );
@@ -148,7 +96,7 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public void NestBubbleSortWithNegativeNumbersArray () {
-        setNegativeElementsArray ();
+        setTechnique ( NEGATIVE_ARRAY );
         technique.bubbleSort ();
 
         Assertions.assertEquals ( SORTED_NEGATIVE_ELEMENTS_ARRAY, technique.toString () );
@@ -156,7 +104,7 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public void testMixedNegativePositive () {
-        setMixedNegativePositiveArray ();
+        setTechnique ( MIXED_ARRAY );
         technique.bubbleSort ();
 
         Assertions.assertEquals ( SORTED_MIXED_ELEMENTS_ARRAY, technique.toString () );
@@ -164,7 +112,7 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public void testSelectionSort () {
-        setNormalArray ();
+        setTechnique ( NORMAL_ARRAY );
         technique.selectionSort ();
 
         Assertions.assertEquals ( SORTED_NORMAL_ARRAY, technique.toString () );
@@ -172,7 +120,7 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public void testSelectionSortWithReverseOrderElements () {
-        setReversedSortedArray ();
+        setTechnique ( REVERSE_SORTED );
         technique.selectionSort ();
 
         Assertions.assertEquals ( SORTED_NORMAL_ARRAY, technique.toString () );
@@ -180,7 +128,7 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public void testSelectionSortWithSingleElementArray () {
-        setSingleElementArray();
+        setTechnique ( SINGLE_ELEMENT );
         technique.selectionSort ();
 
         Assertions.assertEquals ( SORTED_SINGLE_ELEMENT_ARRAY, technique.toString () );
@@ -188,7 +136,7 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public void testSelectionSortWithDuplicates () {
-        setArrayWithDuplicates();
+        setTechnique ( WITH_DUPLICATES );
         technique.selectionSort ();
 
         Assertions.assertEquals ( SORTED_ARRAY_WITH_DUPLICATES, technique.toString ( ) );
@@ -196,7 +144,7 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public void testSelectionSortWithAlreadySortedArray () {
-        setSortedElementsArray();
+        setTechnique ( ALREADY_SORTED );
         technique.selectionSort ();
 
         Assertions.assertEquals ( SORTED_NORMAL_ARRAY, technique.toString () );
@@ -204,14 +152,14 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public  void testSelectionSortWithEqualElementsArray () {
-        setEqualElementsArray();
+        setTechnique ( EQUAL_ELEMENT );
         technique.selectionSort ();
         Assertions.assertEquals ( SORTED_EQUAL_ELEMENTS_ARRAY, technique.toString () );
     }
 
     @Test
     public void testSelectionSortWithNegativeElementsArray () {
-        setNegativeElementsArray ();
+        setTechnique ( NEGATIVE_ARRAY );
         technique.selectionSort ();
 
         Assertions.assertEquals ( SORTED_NEGATIVE_ELEMENTS_ARRAY, technique.toString () );
@@ -219,7 +167,7 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public void testSelectionSortWithMixedElementsArray () {
-        setMixedNegativePositiveArray ();
+        setTechnique ( MIXED_ARRAY );
         technique.selectionSort ();
 
         Assertions.assertEquals ( SORTED_MIXED_ELEMENTS_ARRAY, technique.toString () );
@@ -227,12 +175,10 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
 
     @Test
     public void testInsertionSort () {
-        setNormalArray ();
+        setTechnique ( NORMAL_ARRAY );
         technique.insertionSort ();
 
         Assertions.assertEquals ( SORTED_NORMAL_ARRAY, technique.toString () );
     }
-
-
 
 }
