@@ -1,8 +1,8 @@
 package warmUpProblems;
 
+import warmUpProblems.searching.SearchingTechniques;
 import warmUpProblems.sorting.AdvancedSortingTechniques;
 import warmUpProblems.sorting.SimpleSortingTechniques;
-import warmUpProblems.sorting.SortingTechniques;
 
 import java.util.Arrays;
 
@@ -30,55 +30,68 @@ public class ArrayTestUtil {
     public static final String SPECIAL_ARRAY = "array with random big and small elements";
 
 
-    private static boolean isSimpleSortingTechnique ( SortingTechniques technique ) {
-        return technique instanceof SimpleSortingTechniques;
+    private static boolean isSimpleSortingTechnique ( Techniques technique ) {
+        return ( technique instanceof SimpleSortingTechniques );
     }
 
-    public static SortingTechniques setSingleElementArray ( SortingTechniques technique ) {
-        if ( isSimpleSortingTechnique ( technique ) ) {
-            return new SimpleSortingTechniques ();
-        }
-
-        return new AdvancedSortingTechniques ();
+    private static boolean isSearchingTechnique ( Techniques technique ) {
+        return ( technique instanceof SearchingTechniques );
     }
 
-    public static SortingTechniques setEqualElementsArray ( SortingTechniques technique ) {
+    public static Techniques setSingleElementArray ( Techniques technique ) {
+        return getTechniques ( technique );
+    }
+
+    public static Techniques setEqualElementsArray ( Techniques technique ) {
         int [] array = new int [ 6 ];
         Arrays.fill (array, 1 );
-        if ( isSimpleSortingTechnique ( technique ) ) {
-            return new SimpleSortingTechniques ( array );
-        }
 
-        return new AdvancedSortingTechniques ( array );
+        return getTechniques(technique, array);
     }
 
-    public static SortingTechniques setSortedElementsArray ( SortingTechniques technique ) {
+    private static Techniques getTechniques ( Techniques technique ) {
+        if ( isSearchingTechnique ( technique ) ) {
+            return new SearchingTechniques();
+        }
+
+        if ( isSimpleSortingTechnique (technique) ) {
+            return new SimpleSortingTechniques();
+        }
+
+        return new AdvancedSortingTechniques();
+    }
+
+    private static Techniques getTechniques ( Techniques technique, int [ ] array ) {
+        if ( isSearchingTechnique (technique) ) {
+            return new SearchingTechniques(array);
+        }
+
+        if ( isSimpleSortingTechnique (technique) ) {
+            return new SimpleSortingTechniques(array);
+        }
+
+        return new AdvancedSortingTechniques(array);
+    }
+
+    public static Techniques setSortedElementsArray ( Techniques technique ) {
         int [] array = new int [ 6 ];
         for ( int i = 0; i < array.length; ++i ) {
             array[i] = i + 1;
         }
 
-        if ( isSimpleSortingTechnique ( technique ) ) {
-            return new SimpleSortingTechniques ( array );
-        }
-
-        return new AdvancedSortingTechniques ( array );
+        return getTechniques ( technique, array );
     }
 
-    public static SortingTechniques setReversedSortedArray ( SortingTechniques technique ) {
+    public static Techniques setReversedSortedArray ( Techniques technique ) {
         int [] array = new int [ 6 ];
         for ( int i = 0; i < array.length; ++i ) {
             array[ i ] = array.length - i;
         }
 
-        if ( isSimpleSortingTechnique ( technique ) ) {
-            return new SimpleSortingTechniques ( array );
-        }
-
-        return new AdvancedSortingTechniques ( array );
+        return getTechniques ( technique, array );
     }
 
-    public static SortingTechniques setNormalArray ( SortingTechniques technique ) {
+    public static Techniques setNormalArray ( Techniques technique ) {
         int [] array = new int [ 6 ];
         array[ 0 ] = 6;
         array[ 1 ] = 5;
@@ -87,14 +100,10 @@ public class ArrayTestUtil {
         array[ 4 ] = 1;
         array[ 5 ] = 4;
 
-        if ( isSimpleSortingTechnique ( technique ) ) {
-            return new SimpleSortingTechniques ( array );
-        }
-
-        return new AdvancedSortingTechniques ( array );
+        return getTechniques ( technique, array );
     }
 
-    public static SortingTechniques setArrayWithDuplicates ( SortingTechniques technique ) {
+    public static Techniques setArrayWithDuplicates ( Techniques technique ) {
         int [] array = new int [ 6 ];
         array[ 0 ] = 2;
         array[ 1 ] = 1;
@@ -103,14 +112,10 @@ public class ArrayTestUtil {
         array[ 4 ] = 2;
         array[ 5 ] = 1;
 
-        if ( isSimpleSortingTechnique ( technique ) ) {
-            return new SimpleSortingTechniques ( array );
-        }
-
-        return new AdvancedSortingTechniques ( array );
+        return getTechniques ( technique, array );
     }
 
-    public static SortingTechniques setNegativeElementsArray ( SortingTechniques technique ) {
+    public static Techniques setNegativeElementsArray ( Techniques technique ) {
         int [] array = new int [ 6 ];
         array [ 0 ] = -1;
         array [ 1 ] = -3;
@@ -119,14 +124,10 @@ public class ArrayTestUtil {
         array [ 4 ] = -5;
         array [ 5 ] = -4;
 
-        if ( isSimpleSortingTechnique ( technique ) ) {
-            return new SimpleSortingTechniques ( array );
-        }
-
-        return new AdvancedSortingTechniques ( array );
+        return getTechniques ( technique, array );
     }
 
-    public static SortingTechniques setMixedNegativePositiveArray ( SortingTechniques technique ) {
+    public static Techniques setMixedNegativePositiveArray ( Techniques technique ) {
         int [] array = new int [ 6 ];
         array [ 0 ] = 1;
         array [ 1 ] = -1;
@@ -135,14 +136,10 @@ public class ArrayTestUtil {
         array [ 4 ] = 134;
         array [ 5 ] = 6;
 
-        if ( isSimpleSortingTechnique ( technique ) ) {
-            return new SimpleSortingTechniques ( array );
-        }
-
-        return new AdvancedSortingTechniques ( array );
+        return getTechniques ( technique, array );
     }
 
-    public static SortingTechniques setSpecialArray ( SortingTechniques technique ) {
+    public static Techniques setSpecialArray ( Techniques technique ) {
         int [ ] array = new int [ 6 ];
         array [ 0 ] = 923;
         array [ 1 ] = 194;
@@ -151,10 +148,6 @@ public class ArrayTestUtil {
         array [ 4 ] = 461;
         array [ 5 ] = 73;
 
-        if ( isSimpleSortingTechnique ( technique ) ) {
-            return new SimpleSortingTechniques ( array );
-        }
-
-        return new AdvancedSortingTechniques ( array );
+        return getTechniques ( technique, array );
     }
 }
