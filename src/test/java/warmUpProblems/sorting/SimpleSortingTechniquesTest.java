@@ -87,7 +87,7 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
     }
 
     @Test
-    public void testMixedNegativePositive () {
+    public void testBubbleSortWithMixedNegativePositive () {
         setTechnique ( ArrayTestUtil.MIXED_ARRAY );
         technique.bubbleSort ();
 
@@ -163,6 +163,62 @@ public class SimpleSortingTechniquesTest implements BasicTest  {
         technique.insertionSort ();
 
         Assertions.assertEquals ( ArrayTestUtil.SORTED_NORMAL_ARRAY, technique.toString () );
+    }
+
+    @Test
+    public void testInsertionSortWithReverseOrderElements ( ) {
+        setTechnique ( ArrayTestUtil.REVERSE_SORTED );
+        technique.insertionSort ();
+
+        Assertions.assertEquals ( ArrayTestUtil.SORTED_NORMAL_ARRAY, technique.toString () );
+    }
+
+    @Test
+    public void testInsertionSortWithSingleElementArray () {
+        setTechnique ( ArrayTestUtil.SINGLE_ELEMENT );
+        technique.insertionSort ();
+
+        Assertions.assertEquals ( ArrayTestUtil.SORTED_SINGLE_ELEMENT_ARRAY, technique.toString () );
+    }
+
+    @Test
+    public void testInsertionSortWithDuplicates () {
+        setTechnique ( ArrayTestUtil.WITH_DUPLICATES );
+        technique.insertionSort ();
+
+        Assertions.assertEquals ( ArrayTestUtil.SORTED_ARRAY_WITH_DUPLICATES, technique.toString () );
+    }
+
+    @Test
+    public void testInsertionSortWithAlreadySortedArray () {
+        setTechnique ( ArrayTestUtil.ALREADY_SORTED );
+        technique.insertionSort ();
+
+        Assertions.assertEquals ( ArrayTestUtil.SORTED_NORMAL_ARRAY, technique.toString () );
+    }
+
+    @Test
+    public void testInsertionSortWithEqualElementsArray () {
+        setTechnique ( ArrayTestUtil.EQUAL_ELEMENT );
+        technique.insertionSort ();
+
+        Assertions.assertEquals ( ArrayTestUtil.SORTED_EQUAL_ELEMENTS_ARRAY, technique.toString () );
+    }
+
+    @Test
+    public void testInsertionSortedWithNegativeElementsArray () {
+        setTechnique ( ArrayTestUtil.NEGATIVE_ARRAY );
+        technique.insertionSort ();
+
+        Assertions.assertEquals ( ArrayTestUtil.SORTED_NEGATIVE_ELEMENTS_ARRAY, technique.toString () );
+    }
+
+    @Test
+    public void testInsertionSortWithMixedElementsArray () {
+        setTechnique ( ArrayTestUtil.MIXED_ARRAY );
+        technique.insertionSort ();
+
+        Assertions.assertEquals ( ArrayTestUtil.SORTED_MIXED_ELEMENTS_ARRAY, technique.toString () );
     }
 
 }
