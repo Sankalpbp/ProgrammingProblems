@@ -5,6 +5,8 @@ import warmUpProblems.sorting.AdvancedSortingTechniques;
 import warmUpProblems.sorting.SimpleSortingTechniques;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class to provide utility methods for creating arrays for test cases of Sorting techniques
@@ -28,6 +30,24 @@ public class ArrayTestUtil {
     public static final String NEGATIVE_ARRAY = "array with all negative elements";
     public static final String MIXED_ARRAY = "array with both positive, negative elements and zero";
     public static final String SPECIAL_ARRAY = "array with random big and small elements";
+
+    public static final Map<ArrayInputType, SortOutput> sortedForUnsorted = getSortedForUnsorted ();
+
+    private static Map<ArrayInputType, SortOutput> getSortedForUnsorted ( ) {
+        Map<ArrayInputType, SortOutput> sortedForUnsorted = new HashMap<> ();
+
+        sortedForUnsorted.put ( ArrayInputType.SINGLE_ELEMENT, SortOutput.SORTED_SINGLE_ELEMENT_ARRAY );
+        sortedForUnsorted.put ( ArrayInputType.NORMAL_ARRAY, SortOutput.SORTED_NORMAL_ARRAY );
+        sortedForUnsorted.put ( ArrayInputType.EQUAL_ELEMENT, SortOutput.SORTED_EQUAL_ELEMENTS_ARRAY );
+        sortedForUnsorted.put ( ArrayInputType.ALREADY_SORTED, SortOutput.SORTED_NORMAL_ARRAY );
+        sortedForUnsorted.put ( ArrayInputType.REVERSE_SORTED, SortOutput.SORTED_NORMAL_ARRAY );
+        sortedForUnsorted.put ( ArrayInputType.WITH_DUPLICATES, SortOutput.SORTED_ARRAY_WITH_DUPLICATES );
+        sortedForUnsorted.put ( ArrayInputType.NEGATIVE_ARRAY, SortOutput.SORTED_NEGATIVE_ELEMENTS_ARRAY );
+        sortedForUnsorted.put ( ArrayInputType.MIXED_ARRAY, SortOutput.SORTED_MIXED_ELEMENTS_ARRAY );
+        sortedForUnsorted.put ( ArrayInputType.SPECIAL_ARRAY, SortOutput.SORTED_SPECIAL_ARRAY );
+
+        return sortedForUnsorted;
+    }
 
 
     private static boolean isSimpleSortingTechnique ( Techniques technique ) {
