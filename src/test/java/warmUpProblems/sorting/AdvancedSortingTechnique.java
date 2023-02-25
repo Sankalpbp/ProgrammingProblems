@@ -1,4 +1,4 @@
-package warmUpProblems;
+package warmUpProblems.sorting;
 
 public enum AdvancedSortingTechnique {
 

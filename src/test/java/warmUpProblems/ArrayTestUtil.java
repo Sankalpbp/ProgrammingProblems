@@ -1,6 +1,7 @@
 package warmUpProblems;
 
 import warmUpProblems.searching.SearchingTechniques;
+import warmUpProblems.sorting.SortOutput;
 import warmUpProblems.sorting.AdvancedSortingTechniques;
 import warmUpProblems.sorting.SimpleSortingTechniques;
 
@@ -13,25 +14,42 @@ import java.util.Map;
  */
 public class ArrayTestUtil {
 
-    public static final String SORTED_NORMAL_ARRAY = "[ 1, 2, 3, 4, 5, 6 ]";
-    public static final String SORTED_EQUAL_ELEMENTS_ARRAY = "[ 1, 1, 1, 1, 1, 1 ]";
-    public static final String SORTED_SINGLE_ELEMENT_ARRAY = "[ 1 ]";
-    public static final String SORTED_ARRAY_WITH_DUPLICATES = "[ 1, 1, 2, 2, 3, 3 ]";
-    public static final String SORTED_NEGATIVE_ELEMENTS_ARRAY = "[ -6, -5, -4, -3, -2, -1 ]";
-    public static final String SORTED_MIXED_ELEMENTS_ARRAY = "[ -999, -1, 0, 1, 6, 134 ]";
-    public static final String SORTED_SPECIAL_ARRAY = "[ 2, 37, 73, 194, 461, 923 ]";
-
-    public static final String SINGLE_ELEMENT = "array with single elements";
-    public static final String EQUAL_ELEMENT = "array with equal elements";
-    public static final String ALREADY_SORTED = "array with already sorted elements";
-    public static final String REVERSE_SORTED = "array with reverse sorted elements";
-    public static final String WITH_DUPLICATES = "array with some duplicates";
-    public static final String NORMAL_ARRAY = "array with normal elements jumbled together, but all positive";
-    public static final String NEGATIVE_ARRAY = "array with all negative elements";
-    public static final String MIXED_ARRAY = "array with both positive, negative elements and zero";
-    public static final String SPECIAL_ARRAY = "array with random big and small elements";
-
     public static final Map<ArrayInputType, SortOutput> sortedForUnsorted = getSortedForUnsorted ();
+    public static final Map<ArrayInputType, Integer> searchedValueForArray = getSearchedValueForArray ();
+    public static final Map<ArrayInputType, Integer> inputForArray = getInputForArray ();
+
+    private static Map<ArrayInputType, Integer> getInputForArray () {
+        Map<ArrayInputType, Integer> inputForArray = new HashMap<> ();
+
+        inputForArray.put ( ArrayInputType.SINGLE_ELEMENT, 1 );
+        inputForArray.put ( ArrayInputType.NORMAL_ARRAY, 4 );
+        inputForArray.put ( ArrayInputType.EQUAL_ELEMENT, 1 );
+        inputForArray.put ( ArrayInputType.ALREADY_SORTED, 4 );
+        inputForArray.put ( ArrayInputType.REVERSE_SORTED, 4 );
+        inputForArray.put ( ArrayInputType.WITH_DUPLICATES, 1 );
+        inputForArray.put ( ArrayInputType.NEGATIVE_ARRAY, -1 );
+        inputForArray.put ( ArrayInputType.MIXED_ARRAY, -999 );
+        inputForArray.put ( ArrayInputType.SPECIAL_ARRAY, 194 );
+
+        return inputForArray;
+    }
+
+    private static Map<ArrayInputType, Integer> getSearchedValueForArray () {
+        Map<ArrayInputType, Integer> searchedValueForArray = new HashMap<> ();
+
+        searchedValueForArray.put ( ArrayInputType.SINGLE_ELEMENT, 0 );
+        searchedValueForArray.put ( ArrayInputType.NORMAL_ARRAY, 5 );
+        searchedValueForArray.put ( ArrayInputType.EQUAL_ELEMENT, 0 );
+        searchedValueForArray.put ( ArrayInputType.ALREADY_SORTED, 3 );
+        searchedValueForArray.put ( ArrayInputType.REVERSE_SORTED, 2 );
+        searchedValueForArray.put ( ArrayInputType.WITH_DUPLICATES, 1 );
+        searchedValueForArray.put ( ArrayInputType.NEGATIVE_ARRAY, 0 );
+        searchedValueForArray.put ( ArrayInputType.MIXED_ARRAY, 2 );
+        searchedValueForArray.put ( ArrayInputType.SPECIAL_ARRAY, 1 );
+
+        return searchedValueForArray;
+
+    }
 
     private static Map<ArrayInputType, SortOutput> getSortedForUnsorted ( ) {
         Map<ArrayInputType, SortOutput> sortedForUnsorted = new HashMap<> ();

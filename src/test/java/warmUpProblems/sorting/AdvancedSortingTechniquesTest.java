@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import warmUpProblems.ArrayInputType;
 import warmUpProblems.BasicTest;
 import warmUpProblems.ArrayTestUtil;
-import warmUpProblems.AdvancedSortingTechnique;
 
 import java.util.Arrays;
 

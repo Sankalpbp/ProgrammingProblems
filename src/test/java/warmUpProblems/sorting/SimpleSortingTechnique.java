@@ -1,4 +1,4 @@
-package warmUpProblems;
+package warmUpProblems.sorting;
 
 public enum SimpleSortingTechnique {
     BUBBLE_SORT ( "Bubble Sort" ),
