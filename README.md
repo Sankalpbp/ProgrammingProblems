@@ -1,6 +1,6 @@
 # ProgrammingProblems
 
-In this repository, all the basic data structures are being programmed. 
+In this repository, all the basic data structures and algorithms are being programmed. 
 
 For providing robustness in their working, Unit tests based on JUnit 5 have also been added. 
 
